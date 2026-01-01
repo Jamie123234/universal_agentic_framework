@@ -98,6 +98,7 @@
             padding: 1.5rem;
             margin: 2rem 0;
             overflow-x: auto;
+            max-width: 100%;
         }
 
         .code-block pre {
@@ -106,6 +107,9 @@
             line-height: 1.7;
             margin: 0;
             color: var(--text);
+            white-space: pre;
+            word-wrap: normal;
+            overflow-wrap: normal;
         }
 
         .code-block code {
@@ -164,6 +168,39 @@
             .doc-nav {
                 position: static;
                 margin-bottom: 3rem;
+            }
+
+            .code-block {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doc-section h2 {
+                font-size: 2rem;
+            }
+
+            .doc-section h3 {
+                font-size: 1.25rem;
+            }
+
+            .code-block {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .code-block pre {
+                font-size: 0.75rem;
+            }
+
+            .info-box,
+            .warning-box {
+                padding: 1rem;
+            }
+
+            .doc-content {
+                max-width: 100%;
+                padding: 0 1rem;
             }
         }
     </style>
