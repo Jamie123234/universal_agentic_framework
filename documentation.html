@@ -13,6 +13,7 @@
             gap: 4rem;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 3rem;
         }
 
         .doc-nav {
@@ -81,6 +82,13 @@
         }
 
         .doc-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .doc-section ol {
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 1.5rem;
@@ -163,6 +171,7 @@
         @media (max-width: 1024px) {
             .doc-grid {
                 grid-template-columns: 1fr;
+                padding: 0 2rem;
             }
 
             .doc-nav {
@@ -176,6 +185,10 @@
         }
 
         @media (max-width: 768px) {
+            .doc-grid {
+                padding: 0 1rem;
+            }
+
             .doc-section h2 {
                 font-size: 2rem;
             }
@@ -200,7 +213,7 @@
 
             .doc-content {
                 max-width: 100%;
-                padding: 0 1rem;
+                padding: 0;
             }
         }
     </style>
