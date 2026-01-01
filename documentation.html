@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - UAF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .doc-nav {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .doc-nav-title {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-nav-list {
+            list-style: none;
+        }
+
+        .doc-nav-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .doc-nav-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .doc-nav-list a:hover,
+        .doc-nav-list a.active {
+            color: var(--accent);
+        }
+
+        .doc-content {
+            max-width: 800px;
+        }
+
+        .doc-section {
+            margin-bottom: 5rem;
+            padding-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .doc-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .doc-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .doc-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .code-block code {
+            font-family: var(--font-mono);
+        }
+
+        .info-box {
+            background: var(--accent-dim);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box-title {
+            font-weight: 600;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        @media (max-width: 1024px) {
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-nav {
+                position: static;
+                margin-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                UAF
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Live Demo</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="documentation.html" class="active">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-label">Documentation</div>
+        <h1>Understanding UAF</h1>
+        <p class="hero-description">
+            Comprehensive documentation covering the theory, implementation, 
+            and practical applications of the Universal Agentic Framework.
+        </p>
+    </section>
+
+    <!-- Documentation Content -->
+    <section class="section">
+        <div class="doc-grid">
+            <!-- Sidebar Navigation -->
+            <aside class="doc-nav">
+                <div class="doc-nav-title">Contents</div>
+                <ul class="doc-nav-list">
+                    <li><a href="#introduction" class="active">Introduction</a></li>
+                    <li><a href="#problem">The Problem</a></li>
+                    <li><a href="#solution">The Solution</a></li>
+                    <li><a href="#challenges">Challenges</a></li>
+                    <li><a href="#comparison">Comparison</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="doc-content">
+                <div id="introduction" class="doc-section">
+                    <h2>Introduction</h2>
+                    <p>
+                        The Universal Agentic Framework (UAF) represents a fundamental reimagining 
+                        of how software is created. Rather than forcing AI to generate human-readable 
+                        code that must then be compiled, UAF enables AI to generate executable bytecode directly.
+                    </p>
+                    <p>
+                        This isn't just an optimization—it's a paradigm shift from Software 1.0 
+                        (explicit human instructions) to Software 2.0 (intent-driven execution). 
+                        The implications are profound: faster development, native performance, 
+                        universal portability, and inherent security through sandboxing.
+                    </p>
+
+                    <div class="info-box">
+                        <div class="info-box-title">💡 Key Insight</div>
+                        <p>
+                            Programming languages are user interfaces for humans, not native languages 
+                            for machines. UAF removes this intermediary layer entirely.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="problem" class="doc-section">
+                    <h2>The Problem: The Syntax Tax</h2>
+                    <p>
+                        Current AI coding assistants operate within a fundamentally inefficient paradigm. 
+                        When you ask an AI to "create a function that adds two numbers," here's what happens:
+                    </p>
+
+                    <h3>Traditional Pipeline</h3>
+                    <ol>
+                        <li><strong>Intent:</strong> User expresses what they want</li>
+                        <li><strong>Generation:</strong> AI writes Python/JavaScript/C++ syntax</li>
+                        <li><strong>Parsing:</strong> Computer reads the text, checking for syntax errors</li>
+                        <li><strong>AST Creation:</strong> Text is converted to an Abstract Syntax Tree</li>
+                        <li><strong>Compilation:</strong> AST is compiled to bytecode or machine code</li>
+                        <li><strong>Execution:</strong> The final binary runs on the CPU</li>
+                    </ol>
+
+                    <p>
+                        Steps 2-5 exist solely because humans need to read and understand code. 
+                        The machine doesn't care about variable names, indentation, or semicolons. 
+                        These are human concerns, yet we force AI to master them.
+                    </p>
+
+                    <h3>The Inefficiency</h3>
+                    <p>
+                        We're training massive language models on human syntax patterns instead of 
+                        the mathematical relationships that computers actually use. The AI must learn:
+                    </p>
+                    <ul>
+                        <li>Language-specific quirks (Python indentation vs. C++ braces)</li>
+                        <li>Arbitrary syntax rules (semicolons, commas, parentheses)</li>
+                        <li>Human naming conventions</li>
+                        <li>Comments and documentation style</li>
+                    </ul>
+                    <p>
+                        None of this matters to the CPU. It's pure overhead.
+                    </p>
+                </div>
+
+                <div id="solution" class="doc-section">
+                    <h2>The Solution: Universal Hex</h2>
+                    <p>
+                        UAF proposes a radical simplification: train AI to speak the machine's 
+                        native language directly. Instead of generating Python that compiles to 
+                        bytecode, the AI generates bytecode immediately.
+                    </p>
+
+                    <h3>The UAF Pipeline</h3>
+                    <ol>
+                        <li><strong>Intent:</strong> User expresses what they want</li>
+                        <li><strong>Neural Translation:</strong> AI generates WebAssembly bytecode</li>
+                        <li><strong>Execution:</strong> Bytecode runs in a secure sandbox</li>
+                    </ol>
+
+                    <p>That's it. Three steps instead of six.</p>
+
+                    <h3>Why WebAssembly?</h3>
+                    <p>
+                        WebAssembly (Wasm) is the perfect intermediate representation because it's:
+                    </p>
+                    <ul>
+                        <li><strong>Portable:</strong> Runs on any platform (web, desktop, mobile, embedded)</li>
+                        <li><strong>Fast:</strong> Near-native performance with JIT compilation</li>
+                        <li><strong>Secure:</strong> Sandboxed execution with capability-based security</li>
+                        <li><strong>Typed:</strong> Static type system prevents entire classes of bugs</li>
+                        <li><strong>Compact:</strong> Binary format optimized for size and speed</li>
+                    </ul>
+
+                    <div class="code-block">
+<pre><code>; Traditional: Python (Human Interface)
+def add(a, b):
+    return a + b
+
+; UAF: WebAssembly (Machine Interface)
+(module
+  (func $add (param i32 i32) (result i32)
+    local.get 0
+    local.get 1
+    i32.add))
+</code></pre>
+                    </div>
+                </div>
+
+                <div id="challenges" class="doc-section">
+                    <h2>The Challenges</h2>
+                    <p>
+                        If this approach is so superior, why hasn't it been done already? 
+                        There are three major barriers:
+                    </p>
+
+                    <h3>1. The Black Box Problem</h3>
+                    <p>
+                        If AI generates raw bytecode, humans can't audit it. With Python, a developer 
+                        can read the code and understand what it does. With hex, that's impossible.
+                    </p>
+                    <p>
+                        <strong>UAF's Solution:</strong> The Guardian AI—a secondary model trained 
+                        specifically to analyze bytecode for security threats. Instead of human review, 
+                        we use AI review. Additionally, the sandboxed execution environment prevents 
+                        malicious code from causing harm even if it gets through.
+                    </p>
+
+                    <h3>2. Training Data Scarcity</h3>
+                    <p>
+                        Language models are trained on GitHub, which contains millions of Python 
+                        repositories. But there's virtually no dataset of (Natural Language → WebAssembly) 
+                        pairs.
+                    </p>
+                    <p>
+                        <strong>UAF's Solution:</strong> The Synthetic Foundry—using existing LLMs 
+                        to generate training data. We prompt GPT-4/Claude to write Rust code, compile 
+                        it to Wasm, and save the (prompt → bytecode) pair. Repeat millions of times 
+                        to create a comprehensive dataset.
+                    </p>
+
+                    <h3>3. Platform Fragmentation</h3>
+                    <p>
+                        Raw machine code (x86, ARM) is platform-specific. If the AI generates Intel 
+                        bytecode, it won't run on an iPhone.
+                    </p>
+                    <p>
+                        <strong>UAF's Solution:</strong> WebAssembly is platform-independent. The 
+                        AI generates universal bytecode, and the runtime (Wasmtime, browser) handles 
+                        JIT compilation to native code for the specific hardware.
+                    </p>
+
+                    <div class="warning-box">
+                        <div class="warning-box-title">⚠️ Security Consideration</div>
+                        <p>
+                            While UAF provides strong security through sandboxing, no system is 
+                            perfect. Always run untrusted code in isolated environments and follow 
+                            security best practices.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="comparison" class="doc-section">
+                    <h2>Comparison: Software 1.0 vs 2.0</h2>
+                    
+                    <h3>Development Speed</h3>
+                    <p>
+                        <strong>Software 1.0:</strong> Generate code → Parse → Compile → Test → Debug syntax errors → Repeat
+                    </p>
+                    <p>
+                        <strong>Software 2.0:</strong> Stream bytecode → Execute instantly
+                    </p>
+
+                    <h3>Performance</h3>
+                    <p>
+                        <strong>Software 1.0:</strong> Interpreted languages (Python, JavaScript) 
+                        have significant overhead. Compiled languages (C++, Rust) are fast but slow to compile.
+                    </p>
+                    <p>
+                        <strong>Software 2.0:</strong> WebAssembly runs at 85-95% native performance 
+                        with near-zero compilation time.
+                    </p>
+
+                    <h3>Portability</h3>
+                    <p>
+                        <strong>Software 1.0:</strong> "Write once, debug everywhere." Python needs 
+                        an interpreter. C++ needs recompilation for each platform.
+                    </p>
+                    <p>
+                        <strong>Software 2.0:</strong> True "write once, run anywhere." The same 
+                        bytecode runs on web, desktop, mobile, and embedded systems.
+                    </p>
+
+                    <h3>Security</h3>
+                    <p>
+                        <strong>Software 1.0:</strong> Relies on human code review, static analysis, 
+                        and runtime sandboxing as afterthoughts.
+                    </p>
+                    <p>
+                        <strong>Software 2.0:</strong> Security by design. Code runs in a capability-based 
+                        sandbox from the start. No file system, network, or system access unless explicitly granted.
+                    </p>
+                </div>
+
+                <div id="getting-started" class="doc-section">
+                    <h2>Getting Started</h2>
+                    <p>
+                        UAF is currently in active development. To follow progress or contribute:
+                    </p>
+
+                    <h3>Try the Demo</h3>
+                    <p>
+                        Visit the <a href="demo.html" style="color: var(--accent);">live demo</a> 
+                        to see UAF in action. Watch as natural language prompts are translated to 
+                        WebAssembly bytecode and executed in real-time.
+                    </p>
+
+                    <h3>Read the Roadmap</h3>
+                    <p>
+                        The <a href="roadmap.html" style="color: var(--accent);">development roadmap</a> 
+                        outlines our phased approach from foundation to deployment. We're currently 
+                        in Phase 1: building the synthetic data pipeline.
+                    </p>
+
+                    <h3>Understand the Architecture</h3>
+                    <p>
+                        Deep dive into the <a href="architecture.html" style="color: var(--accent);">technical architecture</a> 
+                        to understand how the neural frontend, universal hex, and Guardian compiler work together.
+                    </p>
+
+                    <div class="info-box">
+                        <div class="info-box-title">🚀 Join the Revolution</div>
+                        <p>
+                            UAF represents the future of software development. Whether you're a 
+                            researcher, developer, or enthusiast, there's a place for you in building 
+                            Software 2.0. Stay tuned for public API access and contribution guidelines.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 Universal Agentic Framework
+            </div>
+            <ul class="footer-links">
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="animations.js"></script>
+    <script>
+        // Smooth scroll for doc navigation
+        document.querySelectorAll('.doc-nav-list a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Update active state
+                    document.querySelectorAll('.doc-nav-list a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animate doc sections on scroll
+        setTimeout(() => {
+            const docSections = document.querySelectorAll('.doc-section');
+            docSections.forEach(section => {
+                anime({
+                    targets: section,
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    duration: 800,
+                    easing: 'easeOutCubic'
+                });
+            });
+        }, 1400);
+    </script>
+</body>
+</html>

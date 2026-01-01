@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAF - Universal Agentic Framework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                UAF
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Overview</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Live Demo</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-label">Software 2.0</div>
+        <h1>Universal Agentic Framework</h1>
+        <p class="hero-description">
+            A neural compiler that replaces human-readable syntax with direct bytecode generation. 
+            AI that speaks in machine code, executing at native performance across any platform.
+        </p>
+        <div class="hero-cta">
+            <a href="demo.html" class="btn btn-primary">View Live Demo →</a>
+            <a href="documentation.html" class="btn btn-secondary">Read Documentation</a>
+        </div>
+    </section>
+
+    <!-- Core Concept -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">The Paradigm Shift</div>
+            <h2 class="section-title">Eliminating the Syntax Tax</h2>
+            <p class="section-description">
+                Current AI systems generate human-readable code that must be parsed, compiled, and interpreted. 
+                UAF bypasses this entire layer by generating executable WebAssembly bytecode directly from natural language intent.
+            </p>
+        </div>
+
+        <div class="three-col-grid">
+            <div class="card">
+                <div class="card-label">01</div>
+                <h3 class="card-title">Neural Frontend</h3>
+                <p class="card-description">
+                    An LLM fine-tuned on logic-to-bytecode execution paths. The model learns to 
+                    translate intent directly into memory operations and register states, bypassing 
+                    Python, C++, or any human language entirely.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-label">02</div>
+                <h3 class="card-title">Universal Hex</h3>
+                <p class="card-description">
+                    Output is WebAssembly bytecode—a portable, type-safe, mathematical intermediate 
+                    representation. It's not quite machine code, but it's stripped of all human 
+                    concerns: no variable names, no syntax rules, just pure logic.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-label">03</div>
+                <h3 class="card-title">Guardian Compiler</h3>
+                <p class="card-description">
+                    A designated runtime that translates universal hex to platform-specific machine code 
+                    (ARM, x86, RISC-V) while enforcing strict sandboxes. Security through isolation, 
+                    not human code review.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Before & After</div>
+            <h2 class="section-title">Software 1.0 vs 2.0</h2>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    <h3 class="comparison-title">Traditional Pipeline</h3>
+                    <span class="comparison-badge badge-old">Inefficient</span>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Output Format</div>
+                    <div class="comparison-value">Human-readable text (Python, JS, C++)</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Processing Steps</div>
+                    <div class="comparison-value">Parse → AST → Compile → Optimize → Execute</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Error Sources</div>
+                    <div class="comparison-value">Syntax, indentation, semicolons, imports</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Portability</div>
+                    <div class="comparison-value">Requires interpreter or runtime environment</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Verification</div>
+                    <div class="comparison-value">Human code review required</div>
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    <h3 class="comparison-title">UAF Pipeline</h3>
+                    <span class="comparison-badge badge-new">Optimized</span>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Output Format</div>
+                    <div class="comparison-value">Universal bytecode (WebAssembly)</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Processing Steps</div>
+                    <div class="comparison-value">Stream → Execute</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Error Sources</div>
+                    <div class="comparison-value">Logical errors only (no syntax)</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Portability</div>
+                    <div class="comparison-value">Native performance on any platform</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Verification</div>
+                    <div class="comparison-value">Guardian AI + sandboxed execution</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 Universal Agentic Framework
+            </div>
+            <ul class="footer-links">
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>

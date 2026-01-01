@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - UAF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .arch-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .arch-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .arch-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .arch-card h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .arch-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            padding: 1rem 1.5rem;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            color: var(--accent);
+        }
+
+        .flow-diagram {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            overflow-x: hidden;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .flow-steps-inner {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            animation: autoScroll 60s linear infinite;
+        }
+
+        @keyframes autoScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 2rem));
+            }
+        }
+
+        .flow-steps:hover .flow-steps-inner {
+            animation-play-state: paused;
+        }
+
+        .flow-step {
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .flow-step-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: var(--accent-dim);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .flow-step-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-step-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .flow-arrow {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        .technical-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spec-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .spec-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .spec-value {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .technical-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                UAF
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="demo.html">Live Demo</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-label">Technical Architecture</div>
+        <h1>Replacing the Compiler Frontend with a Neural Network</h1>
+        <p class="hero-description">
+            UAF fundamentally reimagines the software compilation pipeline by substituting 
+            traditional syntax parsers with a neural frontend trained on logic-to-bytecode mappings.
+        </p>
+    </section>
+
+    <!-- Architecture Details -->
+    <section class="section">
+        <div class="arch-card">
+            <div class="arch-card-header">
+                <div class="arch-number">01</div>
+                <div>
+                    <h3>Neural Frontend</h3>
+                    <p style="margin: 0; color: var(--text-secondary);">The Intent Translator</p>
+                </div>
+            </div>
+            <div class="arch-content">
+                <p>
+                    The neural frontend is an LLM specifically fine-tuned on a synthetic dataset 
+                    of millions of (prompt → WebAssembly) pairs. Unlike traditional language models 
+                    trained on GitHub code, this model learns the mathematical relationship between 
+                    intent and executable binary states.
+                </p>
+                <p>
+                    By training on direct logic-to-bytecode paths, the model bypasses the entire 
+                    syntax layer. It doesn't "write code" in Python or C++—it configures processor 
+                    states. Variable names, indentation, semicolons, and other human constructs 
+                    are completely absent from its learned representations.
+                </p>
+                <p>
+                    The base architecture is a Llama-3 class transformer (7B-13B parameters) optimized 
+                    for speed. Larger models (70B+) are too slow for real-time generation. The fine-tuning 
+                    uses LoRA (Low-Rank Adaptation) for efficient training on consumer hardware.
+                </p>
+                <div class="tech-list">
+                    <div class="tech-item">Llama 3 (8B)</div>
+                    <div class="tech-item">LoRA Fine-tuning</div>
+                    <div class="tech-item">PyTorch</div>
+                    <div class="tech-item">Synthetic Dataset</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arch-card">
+            <div class="arch-card-header">
+                <div class="arch-number">02</div>
+                <div>
+                    <h3>Universal Hex (WebAssembly)</h3>
+                    <p style="margin: 0; color: var(--text-secondary);">The Portable Binary Format</p>
+                </div>
+            </div>
+            <div class="arch-content">
+                <p>
+                    The output is WebAssembly (Wasm) bytecode—a compact, type-safe, stack-based 
+                    virtual machine format. Wasm was designed by Mozilla, Google, Microsoft, and 
+                    Apple as a compilation target for the web, but it's fundamentally a universal 
+                    binary format that runs anywhere.
+                </p>
+                <p>
+                    Unlike x86 or ARM machine code which is platform-specific, Wasm is an intermediate 
+                    representation. It's closer to LLVM IR than to raw assembly, which gives us 
+                    portability without sacrificing performance. Modern JIT compilers can translate 
+                    Wasm to native code with near-zero overhead.
+                </p>
+                <p>
+                    The bytecode is mathematically precise. Every instruction has explicit types 
+                    (i32, i64, f32, f64), memory operations are bounds-checked, and the control 
+                    flow is structured (no arbitrary jumps). This makes it both secure and analyzable.
+                </p>
+                <div class="tech-list">
+                    <div class="tech-item">WebAssembly 1.0</div>
+                    <div class="tech-item">Stack Machine</div>
+                    <div class="tech-item">Type Safety</div>
+                    <div class="tech-item">Linear Memory</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arch-card">
+            <div class="arch-card-header">
+                <div class="arch-number">03</div>
+                <div>
+                    <h3>Guardian Compiler</h3>
+                    <p style="margin: 0; color: var(--text-secondary);">Security Through Sandboxing</p>
+                </div>
+            </div>
+            <div class="arch-content">
+                <p>
+                    The Guardian is a designated runtime that instantiates Wasm modules in a secure 
+                    sandbox. It translates the universal bytecode to your platform's native machine 
+                    code (ARM, x86, RISC-V) while enforcing strict capability-based security.
+                </p>
+                <p>
+                    By default, Wasm modules have zero access to the outside world. They can't read 
+                    files, make network requests, or call system APIs unless explicitly granted 
+                    capabilities through WASI (WebAssembly System Interface). This is security by 
+                    isolation, not by human code review.
+                </p>
+                <p>
+                    The Guardian also implements resource limits: maximum memory allocation, 
+                    execution time limits, and CPU throttling. If the AI generates an infinite 
+                    loop or fork bomb, it's caught and killed before consuming system resources.
+                </p>
+                <p>
+                    For enterprise deployments, an optional Guardian AI classifier can pre-scan 
+                    generated bytecode for suspicious patterns (recursive explosions, tight loops 
+                    without exit conditions) before execution.
+                </p>
+                <div class="tech-list">
+                    <div class="tech-item">Wasmtime</div>
+                    <div class="tech-item">WASI</div>
+                    <div class="tech-item">Cranelift JIT</div>
+                    <div class="tech-item">Capability Model</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Execution Flow -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Execution Pipeline</div>
+            <h2 class="section-title">From Intent to Native Code</h2>
+        </div>
+
+        <div class="flow-diagram">
+            <div class="flow-steps">
+                <div class="flow-steps-inner">
+                    <div class="flow-step">
+                        <div class="flow-step-icon">💭</div>
+                        <div class="flow-step-title">Natural Language</div>
+                        <div class="flow-step-desc">User expresses intent</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🛡️</div>
+                        <div class="flow-step-title">Guardian Scan</div>
+                        <div class="flow-step-desc">Security analysis</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🧠</div>
+                        <div class="flow-step-title">Neural Frontend</div>
+                        <div class="flow-step-desc">Intent to bytecode</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">📦</div>
+                        <div class="flow-step-title">Universal Hex</div>
+                        <div class="flow-step-desc">Wasm bytecode</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">⚡</div>
+                        <div class="flow-step-title">JIT Compile</div>
+                        <div class="flow-step-desc">Native machine code</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">✅</div>
+                        <div class="flow-step-title">Execute</div>
+                        <div class="flow-step-desc">Sandboxed runtime</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">💭</div>
+                        <div class="flow-step-title">Natural Language</div>
+                        <div class="flow-step-desc">User expresses intent</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🛡️</div>
+                        <div class="flow-step-title">Guardian Scan</div>
+                        <div class="flow-step-desc">Security analysis</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🧠</div>
+                        <div class="flow-step-title">Neural Frontend</div>
+                        <div class="flow-step-desc">Intent to bytecode</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">📦</div>
+                        <div class="flow-step-title">Universal Hex</div>
+                        <div class="flow-step-desc">Wasm bytecode</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">⚡</div>
+                        <div class="flow-step-title">JIT Compile</div>
+                        <div class="flow-step-desc">Native machine code</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">✅</div>
+                        <div class="flow-step-title">Execute</div>
+                        <div class="flow-step-desc">Sandboxed runtime</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Performance Metrics</div>
+            <h2 class="section-title">Technical Specifications</h2>
+        </div>
+
+        <div class="technical-specs">
+            <div class="spec-card">
+                <h4>Neural Frontend</h4>
+                <div class="spec-item">
+                    <span class="spec-label">Model Size</span>
+                    <span class="spec-value">8B - 13B parameters</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Context Window</span>
+                    <span class="spec-value">8,192 tokens</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Generation Speed</span>
+                    <span class="spec-value">~50 tokens/sec</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Training Data</span>
+                    <span class="spec-value">500K+ prompt pairs</span>
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <h4>Runtime Performance</h4>
+                <div class="spec-item">
+                    <span class="spec-label">Compilation Time</span>
+                    <span class="spec-value">&lt; 10ms</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Execution Overhead</span>
+                    <span class="spec-value">~5% vs native</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Memory Sandbox</span>
+                    <span class="spec-value">Linear memory model</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Security Model</span>
+                    <span class="spec-value">Capability-based</span>
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <h4>Platform Support</h4>
+                <div class="spec-item">
+                    <span class="spec-label">Architectures</span>
+                    <span class="spec-value">x86_64, ARM64, RISC-V</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Operating Systems</span>
+                    <span class="spec-value">Linux, macOS, Windows</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Web Browsers</span>
+                    <span class="spec-value">Chrome, Firefox, Safari</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Mobile</span>
+                    <span class="spec-value">iOS, Android</span>
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <h4>Development Tools</h4>
+                <div class="spec-item">
+                    <span class="spec-label">Frontend Training</span>
+                    <span class="spec-value">PyTorch, Unsloth</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Wasm Toolchain</span>
+                    <span class="spec-value">WABT, Binaryen</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Runtime</span>
+                    <span class="spec-value">Wasmtime, Wasmer</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">JIT Compiler</span>
+                    <span class="spec-value">Cranelift</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 Universal Agentic Framework
+            </div>
+            <ul class="footer-links">
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>

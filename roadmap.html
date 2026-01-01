@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - UAF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border: 4px solid var(--bg);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .timeline-marker.complete {
+            background: #22c55e;
+            box-shadow: 0 0 20px #22c55e;
+        }
+
+        .timeline-phase {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .timeline-duration {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-deliverables {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-deliverables h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .deliverable-list {
+            list-style: none;
+        }
+
+        .deliverable-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .deliverable-list li:last-child {
+            border-bottom: none;
+        }
+
+        .deliverable-list li::before {
+            content: '→';
+            color: var(--accent);
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .status-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .status-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-phase {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .status-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding-left: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                UAF
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Live Demo</a></li>
+                <li><a href="roadmap.html" class="active">Roadmap</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-label">Development Roadmap</div>
+        <h1>Building the Future of Software</h1>
+        <p class="hero-description">
+            A phased approach to constructing the Universal Agentic Framework, 
+            from foundational research to global deployment.
+        </p>
+    </section>
+
+    <!-- Current Status -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Current Progress</div>
+            <h2 class="section-title">Development Status</h2>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-icon">🔬</div>
+                <div class="status-label">Phase 1</div>
+                <div class="status-phase">Foundation</div>
+            </div>
+            <div class="status-card">
+                <div class="status-icon">🧪</div>
+                <div class="status-label">Phase 2</div>
+                <div class="status-phase">Training</div>
+            </div>
+            <div class="status-card">
+                <div class="status-icon">⚙️</div>
+                <div class="status-label">Phase 3</div>
+                <div class="status-phase">Runtime</div>
+            </div>
+            <div class="status-card">
+                <div class="status-icon">🚀</div>
+                <div class="status-label">Phase 4</div>
+                <div class="status-phase">Deployment</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-phase">Phase 1: Foundation</div>
+                <h3 class="timeline-title">The Synthetic Foundry</h3>
+                <div class="timeline-duration">Weeks 1-4</div>
+                <div class="timeline-content">
+                    <p>
+                        Building the dataset infrastructure and proving the pipeline works for a 
+                        constrained domain. This phase focuses on creating the "toy" engine that 
+                        demonstrates the core concept without requiring massive computational resources.
+                    </p>
+                    <p>
+                        Using existing LLMs (GPT-4, Claude) as "teachers," we generate millions of 
+                        (Natural Language → Wasm) training pairs. The goal is to create a high-quality 
+                        synthetic dataset that captures the relationship between intent and executable logic.
+                    </p>
+
+                    <div class="timeline-deliverables">
+                        <h4>Key Deliverables</h4>
+                        <ul class="deliverable-list">
+                            <li>Translator script for prompt → Wasm conversion</li>
+                            <li>Guardian runtime with security sandboxing (Wasmtime/Wasmer)</li>
+                            <li>Synthetic data generation pipeline (1,000+ pairs)</li>
+                            <li>Initial dataset format and validation tools</li>
+                            <li>Proof-of-concept demo for simple math operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-phase">Phase 2: Data Factory</div>
+                <h3 class="timeline-title">Scaling the Dataset</h3>
+                <div class="timeline-duration">Weeks 5-8</div>
+                <div class="timeline-content">
+                    <p>
+                        Solving the "training data scarcity" problem by building an industrial-scale 
+                        data generation pipeline. The AI needs millions of diverse examples to learn 
+                        the patterns of Universal Hex across different domains.
+                    </p>
+                    <p>
+                        We define the "instruction set"—what the agent is allowed to do—starting with 
+                        pure logic (math, strings) and basic I/O (2D canvas). The pipeline runs 24/7, 
+                        generating prompts, compiling Rust to Wasm, and extracting training pairs.
+                    </p>
+
+                    <div class="timeline-deliverables">
+                        <h4>Key Deliverables</h4>
+                        <ul class="deliverable-list">
+                            <li>WIT (Wasm Interface Types) specification for capabilities</li>
+                            <li>Automated prompt generator with domain diversity</li>
+                            <li>Rust → Wasm compilation pipeline at scale</li>
+                            <li>100K-500K high-quality training pairs</li>
+                            <li>Data cleaning and validation infrastructure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-phase">Phase 3: Neural Core</div>
+                <h3 class="timeline-title">Training the Agent</h3>
+                <div class="timeline-duration">Weeks 9-12</div>
+                <div class="timeline-content">
+                    <p>
+                        Fine-tuning the language model that becomes the UAF agent. We start with a 
+                        pre-trained base model (Llama 3 8B or Mistral 7B) and teach it to speak in 
+                        hexadecimal bytecode instead of Python or natural language.
+                    </p>
+                    <p>
+                        Using LoRA (Low-Rank Adaptation) for efficient training on consumer hardware. 
+                        The model learns to map natural language prompts to WebAssembly instructions, 
+                        understanding memory layout, type systems, and control flow at the bytecode level.
+                    </p>
+
+                    <div class="timeline-deliverables">
+                        <h4>Key Deliverables</h4>
+                        <ul class="deliverable-list">
+                            <li>Base model selection and optimization</li>
+                            <li>LoRA fine-tuning setup with GPU acceleration</li>
+                            <li>Training run on synthetic dataset</li>
+                            <li>Model checkpoint (agent_v1.pt)</li>
+                            <li>"Healing" layer for invalid bytecode correction</li>
+                            <li>Evaluation metrics and benchmarks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-phase">Phase 4: Execution Engine</div>
+                <h3 class="timeline-title">The Guardian Runtime</h3>
+                <div class="timeline-duration">Weeks 13-16</div>
+                <div class="timeline-content">
+                    <p>
+                        Building the "Designated Compiler" that runs anywhere and keeps users safe. 
+                        This is the WASI implementation that gives Wasm modules controlled access to 
+                        system resources while maintaining security through sandboxing.
+                    </p>
+                    <p>
+                        Implementing resource limits, capability-based security, and optional Guardian 
+                        AI for pre-execution bytecode scanning. Creating platform-specific bindings for 
+                        web, desktop, and mobile deployment.
+                    </p>
+
+                    <div class="timeline-deliverables">
+                        <h4>Key Deliverables</h4>
+                        <ul class="deliverable-list">
+                            <li>WASI system interface implementation</li>
+                            <li>Guardian AI classifier for bytecode scanning</li>
+                            <li>Resource limits and sandboxing controls</li>
+                            <li>Web runtime (HTML/JS wrapper)</li>
+                            <li>Desktop runtime (Rust binary with Wasmtime)</li>
+                            <li>Security audit and penetration testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-phase">Phase 5: Universal Interface</div>
+                <h3 class="timeline-title">Public Deployment</h3>
+                <div class="timeline-duration">Future</div>
+                <div class="timeline-content">
+                    <p>
+                        Building the user-facing interface where anyone can command the UAF agent. 
+                        A simple chat interface backed by the neural frontend, streaming bytecode 
+                        generation, and real-time execution feedback.
+                    </p>
+                    <p>
+                        Public API launch, documentation, developer tools, and community building. 
+                        Expanding the capability set to include graphics, physics simulation, data 
+                        processing, and network operations.
+                    </p>
+
+                    <div class="timeline-deliverables">
+                        <h4>Key Deliverables</h4>
+                        <ul class="deliverable-list">
+                            <li>Web-based chat interface</li>
+                            <li>Public API with authentication</li>
+                            <li>Comprehensive documentation</li>
+                            <li>Developer SDK and examples</li>
+                            <li>Expanded capability set (graphics, networking)</li>
+                            <li>Community forums and support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 Universal Agentic Framework
+            </div>
+            <ul class="footer-links">
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>
